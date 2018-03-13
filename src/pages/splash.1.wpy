@@ -1,0 +1,117 @@
+<style lang='css'>
+@import '/zanui/btn.wxss';
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+}
+.top {
+    height: 440rpx;
+    background-color: #FDAA3C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.top > text {
+    width: 100%;
+    color: #FFF;
+    font-size: 60rpx;
+    text-align: center;
+    align-self: center;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.logo {
+    height: 200rpx;
+    width: 400rpx; 
+}
+.scan {
+    width: 345rpx;
+    height: 80rpx;
+    display: flex;
+    justify-content: center;
+}
+.split {
+    font-size: 28rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.card {
+    height: 400rpx;
+    width: 200rpx;
+}
+</style>
+
+<template>
+  <view class="container">
+    <!-- top section -->
+    <view class="top">
+        <view class="header">hahah</view>
+        <text>MANGO</text>
+        <view class="scan">扫码定位货架</view>
+    </view>
+
+    <!-- middle section -->
+    <view class="split">
+        <text>已可能在以下货架附近</text>
+    </view>
+
+    <!-- bottom section -->
+    <view class="card-container">
+        <repeat for="{{shelves}}" item="item">
+            <text></text>
+        </repeat>
+    </view>
+ </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Splash extends wepy.page{
+    data = {
+        location: {},
+        user: {},
+        shelves: [
+            {
+                id: '123',
+                score: 100,
+                name: '123',
+                address: 'address',
+                img: '',
+                locked: false,
+                hot: false
+            },
+            {
+                id: '456',
+                score: 99,
+                name: '456',
+                address: 'address',
+                img: '',
+                locked: true,
+                hot: true
+            }
+        ]
+    }
+    methods = {}
+    async onLoad() {
+        // 登录账号
+
+        // 获取用户 union_id
+        this.user = await wepy.getUserInfo({withCredentials: true})
+        this.location = await wepy.getLocation()
+        wepy.showModal({ content: JSON.stringify(this.user), title:"location info"})
+    }
+}
+</script>

@@ -1,0 +1,101 @@
+<style lang="less">
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'example/dashboard',
+      'pages/splash',
+      'pages/splash.1',
+      'pages/index',
+      'example/actionsheet',
+      'example/btn',
+      'example/badge',
+      'example/capsule',
+      'example/card',
+      'example/cell',
+      'example/dialog',
+      'example/field',
+      'example/helper',
+      'example/icon',
+      'example/layout',
+      'example/loadmore',
+      'example/noticebar',
+      'example/panel',
+      'example/popup',
+      'example/select',
+      'example/stepper',
+      'example/steps',
+      'example/switch',
+      'example/tab',
+      'example/tag',
+      'example/toptips',
+      'example/toast'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+
+  }
+
+  sleep (s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+
+  async testAsync () {
+    const data = await this.sleep(3)
+    console.log(data)
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    wepy.getUserInfo({
+      success (res) {
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+      }
+    })
+  }
+}
+</script>
