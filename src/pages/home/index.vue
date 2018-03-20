@@ -17,7 +17,7 @@
 
     <!--扫码  -->
     <div class="scan">
-      <button class="scan-button" bindtap="tapScan">扫码定位货架</button>
+      <button class="scan-button" @click="tapScan">扫码定位货架</button>
     </div>
 
     <!--分割线  -->
@@ -37,7 +37,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 import store from './store'
 

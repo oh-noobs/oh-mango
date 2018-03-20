@@ -25,13 +25,13 @@ import store from './store'
 export default {
   computed: {
     totalNum () {
-      let num = 0;
-      store.state.cart.map( i => num = num + i.num)
+      let num = 0
+      store.state.cart.map(i => num = num + i.num)
       return num
     },
     totalPrice () {
-      let price = 0;
-      store.state.cart.map( i => price = price + i.num * i.price)
+      let price = 0
+      store.state.cart.map(i => price = price + i.num * i.price)
       return price
     }
   }
