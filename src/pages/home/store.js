@@ -11,8 +11,8 @@ const store = new Vuex.Store({
       y: 0
     },
     shelfList: [
-        { name: '门店1', distance: '0.2km', rank: 1, location: [], id: 123 },
-        { name: '门店2', distance: '2km', rank: 2, location: [], id: 234 }
+        { name: '门店1', distance: '0.2km', rank: 1, location: [], _id: 123, sid: 'shelf01' },
+        { name: '门店2', distance: '2km', rank: 2, location: [], _id: 234, sid: 'shelf02' }
     ]
   },
   mutations: {
